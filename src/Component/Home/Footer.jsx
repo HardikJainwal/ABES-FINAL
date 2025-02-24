@@ -1,23 +1,22 @@
 import React from 'react';
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
-import logo from '../../assets/Logo/Group.png'
+import logo from '../../assets/Logo/Group.png';
 
 const Footer = () => {
   return (
     <footer className="bg-black text-gray-400 py-10 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start">
+      <div className="max-w-7xl mx-auto flex flex-col items-center md:items-start md:flex-row justify-between">
+        
         {/* Logo and Text Section */}
-        <div className="flex items-center space-x-4 mb-6 md:mb-0">
-          <img src={logo} alt="ABES" className="w-16 h-auto" />
-          <div>
-            <h2 className="text-white text-lg font-semibold">ABES</h2>
-            <p className="text-gray-400 text-sm">SELL BEFORE ANYONE ELSE</p>
-          </div>
+        <div className="flex flex-col items-center md:items-start text-center md:text-left mb-6 md:mb-0">
+          <img src={logo} alt="ABES" className="w-16 h-auto mb-2" />
+          <h2 className="text-white text-lg font-semibold">ABES</h2>
+          <p className="text-gray-400 text-sm">SELL BEFORE ANYONE ELSE</p>
         </div>
 
         {/* Navigation Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-2xl">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left w-full max-w-3xl">
           <div>
             <h3 className="text-white font-semibold mb-2">Product</h3>
             <ul className="space-y-1">
@@ -36,7 +35,7 @@ const Footer = () => {
               <li>Careers</li>
               <li>Manifesto</li>
               <li>Press</li>
-              <li>Contract</li>
+              <li>Contact</li>
             </ul>
           </div>
           <div>
@@ -61,7 +60,7 @@ const Footer = () => {
       </div>
 
       {/* Social Icons Section */}
-      <div className="flex items-center space-x-4 mt-8 md:mt-10">
+      <div className="flex justify-center md:justify-start space-x-4 mt-8">
         <IoClose className="text-gray-400 w-5 h-5 cursor-pointer hover:text-white" />
         <FaInstagram className="text-gray-400 w-5 h-5 cursor-pointer hover:text-white" />
         <FaYoutube className="text-gray-400 w-5 h-5 cursor-pointer hover:text-white" />

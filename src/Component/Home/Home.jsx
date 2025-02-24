@@ -120,21 +120,56 @@ const Home = () => {
         </div>
 
         {/* Challenge Section with Rounded Corners */}
-        <div className="relative mt-32 px-6 max-w-5xl mx-auto pb-32">
-        <div 
-  ref={challengeRef}
-  className="bg-black/90 rounded-2xl p-12 py-20 text-white
-  flex flex-col items-center text-center
-  transition-all duration-500 relative overflow-hidden"
-  style={{
-    background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.98))',
-    boxShadow: '0 -50px 80px 30px rgba(255, 69, 0, 0.25)', // Only Top Shadow
-    border: '1px solid transparent',
-    borderImage: 'linear-gradient(135deg, #FFA500, #FFFFFF, transparent) 1'
-  }}
->
-            {/* Heading */}
-            <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="relative mt-16 px-6 max-w-5xl mx-auto pb-32">
+          {/* External Top Shadow - Positioned outside and above the challenge box */}
+          <div 
+            className="absolute left-0 right-0 h-64 z-0"
+            style={{
+              top: '-40px',
+              background: 'linear-gradient(to bottom, rgba(255, 69, 0, 0.2) 0%, transparent 100%)',
+              filter: 'blur(25px)',
+              transform: 'translateY(-30%)',
+              width: '100%',
+              maxWidth: '100%',
+              margin: '0 auto'
+            }}
+          />
+          
+          <div 
+            ref={challengeRef}
+            className="rounded-2xl p-8 py-16 text-white
+            flex flex-col items-center text-center
+            transition-all duration-500 relative overflow-hidden z-10"
+            style={{
+              position: 'relative',
+              border: '1px solid transparent',
+              borderImage: 'linear-gradient(135deg, #FFA500, #FFFFFF, transparent) 1'
+            }}
+          >
+            {/* Full-height background gradient for the challenge box */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.25) 0%, rgba(20, 20, 20, 0.3) 25%, rgba(0, 0, 0, 0.95) 50%)',
+                zIndex: -2
+              }}
+            />
+
+            {/* Wider orange glow */}
+            <div
+              className="absolute top-1/2 left-1/2 w-full h-full"
+              style={{
+                transform: 'translate(-50%, -50%)',
+                background: 'radial-gradient(circle at center, rgba(255, 87, 34, 0.15) 0%, transparent 90%)',
+                filter: 'blur(70px)',
+                zIndex: -1
+              }}
+            />
+            
+            {/* Removed the top shadow from inside the box */}
+
+            {/* Heading - Reduced top space */}
+            <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-[500]" style={{ fontFamily: 'Inter, sans-serif' }}>
                 <span style={{ 
                     color: '#FF4500',
@@ -143,7 +178,7 @@ const Home = () => {
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
                     display: 'block',
-                    marginTop: '0.5rem'
+                    marginBottom: '0.5rem'
                   }}>
                   ABES Growth Challenges Section
                 </span>
