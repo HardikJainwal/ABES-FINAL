@@ -23,7 +23,7 @@ const AnimatedSignup = () => {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-[#0D0D0D] px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Dark radial gradient background */}
+      
       <div
         className="absolute inset-0"
         style={{
@@ -32,7 +32,7 @@ const AnimatedSignup = () => {
         }}
       />
 
-      {/* Subtle orange glow */}
+
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px]"
         style={{
@@ -42,7 +42,7 @@ const AnimatedSignup = () => {
         }}
       />
 
-      {/* Content */}
+      
       <div
         ref={formRef}
         className="relative w-full max-w-3xl p-6 sm:p-10 mx-4 sm:mx-8 md:mx-auto rounded-xl border border-gray-800/50"
@@ -59,7 +59,7 @@ const AnimatedSignup = () => {
           Ready to take your brand global? Let&apos;s make it happen
         </h2>
 
-        {/* Input & Button */}
+     
         <div className="flex flex-col sm:flex-row gap-4">
           <input
             ref={inputRef}
