@@ -1,6 +1,6 @@
-# React + Vite
+# ABES-FINAL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is built using React and Vite. It provides a minimal setup with HMR and ESLint rules.
 
 Currently, two official plugins are available:
 
