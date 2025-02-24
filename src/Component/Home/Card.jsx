@@ -145,9 +145,9 @@ const Card = () => {
             ref={(el) => (cardsRef.current[index] = el)}
             className="bg-gradient-to-br from-[#2a0803] to-[#0c0c0c] rounded-xl p-8 border border-orange-600/20 text-white transition-transform duration-300 will-change-transform"
           >
-            <div className="w-16 h-16 mb-6 relative">
-              <img src={icon} alt="Service Icon" className="w-full h-full object-contain" />
-            </div>
+            <div className="w-20 h-20 mb-6 relative"> {/* Increased size */}
+  <img src={icon} alt="Service Icon" className="w-full h-full object-contain" />
+</div>
 
             <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
             <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
