@@ -13,13 +13,16 @@ const Navbar = () => {
       {/* Left Section: Logo */}
       <div className="flex items-center">
         <img src={logo} alt="Logo" className="h-10" />
-        <span className="text-white font-semibold tracking-wide text-lg ml-2">
-          ABES
-        </span>
+        <div className="ml-2 mt-2 flex flex-col items-start leading-tight">
+          <span className="text-white  tracking-widest text-4xl">
+            ABES
+          </span>
+          <span className="text-white text-[8px]">SELL BEFORE ANYONE ELSE</span>
+        </div>
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center space-x-8 mr-auto ml-16">
+      <div className="hidden md:flex items-center space-x-16 mr-auto ml-30 mt-4">
         <a
           href="#"
           className="text-white hover:text-orange-400 transition"

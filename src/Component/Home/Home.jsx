@@ -142,7 +142,7 @@ const Home = () => {
 
 
   
-      <div className="relative mt-16 px-6 max-w-5xl mx-auto pb-32">
+      <div className="relative mt-16 px-2 max-w-6xl mx-auto pb-20">
       
         
 
