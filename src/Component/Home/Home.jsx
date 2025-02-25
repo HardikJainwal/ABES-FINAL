@@ -103,7 +103,8 @@ const Home = () => {
             Empowering Indian Brands for <br />
             <span
               style={{
-                background: "linear-gradient(180deg, #FFFFFF 20%, #FFD4B3 50%, #FF7A00 100%)",
+                background:
+                  "linear-gradient(180deg, #FFFFFF 20%, #FFD4B3 50%, #FF7A00 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -123,9 +124,9 @@ const Home = () => {
             ref={buttonsRef}
             className="flex flex-col md:flex-row justify-center items-center md:space-x-6 space-y-4 md:space-y-0 pt-8"
           >
-           <button className="w-[220px] bg-[#FF4500] hover:bg-[#FF6347] text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300">
-  Apply Now
-</button>
+            <button className="w-[220px] bg-[#FF4500] hover:bg-[#FF6347] text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300">
+              Apply Now
+            </button>
 
             <button className="w-[220px] bg-gray-500/50 hover:bg-gray-900/70 text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 border border-gray-700">
               Explore Opportunities
@@ -137,7 +138,7 @@ const Home = () => {
       <div className="relative mt-16 px-2 max-w-6xl mx-auto pb-20">
         <div className="relative">
           {/* Modified: Enhanced orange shadow OUTSIDE the box, positioned further from the box */}
-          <div 
+          <div
             style={{
               position: "absolute",
               top: "-70px",
@@ -149,12 +150,12 @@ const Home = () => {
               filter: "blur(90px)",
               opacity: "0.6",
               zIndex: "1",
-              pointerEvents: "none"
+              pointerEvents: "none",
             }}
           />
-          
+
           {/* Modified: Side orange glows */}
-          <div 
+          <div
             style={{
               position: "absolute",
               top: "20%",
@@ -166,33 +167,33 @@ const Home = () => {
               filter: "blur(60px)",
               opacity: "0.40",
               zIndex: "1",
-              pointerEvents: "none"
+              pointerEvents: "none",
             }}
           />
-          
-          <div 
+
+          <div
             style={{
               position: "absolute",
               top: "40%",
               right: "-80px",
-              width: "120px",
+              
               height: "300px",
               background: "#FF7800",
               borderRadius: "50%",
               filter: "blur(90px)",
               opacity: "0.25",
               zIndex: "1",
-              pointerEvents: "none"
+              pointerEvents: "none",
             }}
           />
 
           {/* Challenge box container with increased black opacity inside */}
           <div
             ref={challengeRef}
-            className="relative rounded-2xl p-8 py-16 text-white flex flex-col items-center text-center transition-all duration-500 overflow-hidden"
+            className="relative rounded-2xl p-20 py-20 text-white flex flex-col items-center text-center transition-all duration-500 overflow-hidden"
             style={{
-              background: "rgba(0, 0, 0, 0.95)", // Modified: Increased black opacity from 0.9 to 0.95
-              boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
+              background: "rgba(0, 0, 0, 0.95)",
+              boxShadow: "0 0 50px 20px rgba(255, 69, 0, 0.4)", // Adjusted for full outside glow
               borderRadius: "1.5rem",
               position: "relative",
               zIndex: "3",
@@ -206,9 +207,10 @@ const Home = () => {
                 left: "5%",
                 right: "5%",
                 height: "4px",
-                background: "linear-gradient(90deg, transparent, #FF4500, transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, #FF4500, transparent)",
                 borderRadius: "4px",
-                filter: "blur(2px)",
+                filter: "blur(10px)",
                 opacity: "0.9",
                 zIndex: "5",
               }}
@@ -222,7 +224,8 @@ const Home = () => {
                 bottom: "5%",
                 left: "0",
                 width: "2px",
-                background: "linear-gradient(to bottom, rgba(255,165,0,0), rgba(255,165,0,0.8), rgba(255,165,0,0))",
+                background:
+                  "linear-gradient(to bottom, rgba(255,165,0,0), rgba(255,165,0,0.8), rgba(255,165,0,0))",
                 opacity: "0.8",
                 zIndex: "5",
               }}
@@ -234,7 +237,8 @@ const Home = () => {
                 bottom: "5%",
                 right: "0",
                 width: "2px",
-                background: "linear-gradient(to bottom, rgba(255,165,0,0), rgba(255,165,0,0.8), rgba(255,165,0,0))",
+                background:
+                  "linear-gradient(to bottom, rgba(255,165,0,0), rgba(255,165,0,0.8), rgba(255,165,0,0))",
                 opacity: "0.8",
                 zIndex: "5",
               }}
@@ -254,7 +258,8 @@ const Home = () => {
             <div
               className="absolute bottom-0 left-0 w-full h-[2px] rounded-b-2xl"
               style={{
-                background: "linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0))",
+                background:
+                  "linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0))",
                 filter: "blur(2px)",
               }}
             />
@@ -264,7 +269,8 @@ const Home = () => {
               className="absolute top-1/2 left-1/2 w-full h-full"
               style={{
                 transform: "translate(-50%, -50%)",
-                background: "radial-gradient(circle at center, rgba(255, 87, 34, 0.08) 0%, transparent 90%)", // Modified: Reduced opacity from 0.15 to 0.08
+                background:
+                  "radial-gradient(circle at center, rgba(255, 87, 34, 0.08) 0%, transparent 90%)", // Modified: Reduced opacity from 0.15 to 0.08
                 filter: "blur(70px)",
                 zIndex: "-1",
               }}
@@ -290,18 +296,25 @@ const Home = () => {
                 >
                   ABES Growth Challenges Section
                 </span>
-                <span style={{ fontSize: "1.25rem", display: "block", fontWeight: "500" }}>
+                <span
+                  style={{
+                    fontSize: "1.25rem",
+                    display: "block",
+                    fontWeight: "500",
+                  }}
+                >
                   Think You Can Outgrow the Competition? Prove It.
                 </span>
               </h2>
             </div>
 
             <div className="w-full grid lg:grid-cols-2 gap-12 items-start">
-              <div className="text-left">
+              <div className="text-left ml-10">
                 <p className="text-lg opacity-80">
-                  Most businesses crawl. Some sprint. Few take off. The challenge
-                  is simple—hit the growth benchmarks, claim exclusive rewards,
-                  and cement your place as a brand that actually scales.
+                  Most businesses crawl. Some sprint. Few take off. The
+                  challenge is simple—hit the growth benchmarks, claim exclusive
+                  rewards, and cement your place as a brand that actually
+                  scales.
                 </p>
                 <p className="mt-4 text-lg opacity-80">
                   This isn't just another marketing play. It's a test. Can you
@@ -329,16 +342,21 @@ const Home = () => {
                       →
                     </span>
                   </button>
-                  <p className="text-sm opacity-70 mt-2">The clock's ticking.</p>
+                  <p className="text-sm opacity-70 mt-2">
+                    The clock's ticking.
+                  </p>
                 </div>
               </div>
 
-              <div className="flex justify-center lg:justify-end -mt-8">
+              <div className="flex justify-center lg:justify-end -mt-8 relative">
                 <img
                   ref={circleRef}
                   src={Circle}
                   alt="Challenge Ring"
-                  className="w-56 lg:w-80 h-auto object-contain"
+                  className="w-64 lg:w-96 h-auto object-contain"
+                  style={{
+                    transform: "translate(-60px, 10px)", // Moves the image further down and left
+                  }}
                 />
               </div>
             </div>

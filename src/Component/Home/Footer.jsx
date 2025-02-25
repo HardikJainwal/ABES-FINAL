@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
-import logo from '../../assets/Logo/Group.png';
+import logo from '../../assets/Logo/ABES-Logo.png';
 
 const Footer = () => {
   return (

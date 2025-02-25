@@ -1,24 +1,42 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AnimatedSignup = () => {
   const formRef = useRef(null);
   const titleRef = useRef(null);
-  const inputRef = useRef(null);
+  const inputRefs = useRef([]);
   const buttonRef = useRef(null);
   const textRef = useRef(null);
 
   useEffect(() => {
     gsap.set(
-      [titleRef.current, inputRef.current, buttonRef.current, textRef.current],
-      { opacity: 0, y: 20 }
+      [formRef.current, titleRef.current, ...inputRefs.current, buttonRef.current, textRef.current],
+      { opacity: 0, scale: 0.8, y: 50 } // Initial state: smaller and below
     );
 
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.to(titleRef.current, { opacity: 1, y: 0, duration: 0.8 })
-      .to(inputRef.current, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-      .to(buttonRef.current, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-      .to(textRef.current, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4');
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
+      scrollTrigger: {
+        trigger: formRef.current,
+        start: "top 80%", // Adjust start point as needed
+        toggleActions: "play none none none", // Play only when it enters the viewport
+      },
+    });
+
+    // Pop-up with upwards movement
+    tl.to(formRef.current, { opacity: 1, scale: 1.1, y: 0, duration: 0.8, ease: "back.out(1.7)" })
+      .to(formRef.current, { scale: 1, duration: 0.3 }) // Natural settle effect
+      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.5")
+      .to(inputRefs.current, { opacity: 1, y: 0, duration: 0.6, stagger: 0.2 }, "-=0.4")
+      .to(buttonRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
+      .to(textRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4");
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Clean up scroll triggers
+    };
   }, []);
 
   return (
@@ -28,28 +46,26 @@ const AnimatedSignup = () => {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.25) 0%, rgba(20, 20, 20, 0.3) 25%, rgba(0, 0, 0, 0.95) 50%)',
+            "radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.25) 0%, rgba(20, 20, 20, 0.3) 25%, rgba(0, 0, 0, 0.95) 50%)",
         }}
       />
-
 
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px]"
         style={{
           background:
-            'radial-gradient(circle at center, rgba(255, 87, 34, 0.12) 0%, transparent 80%)',
-          filter: 'blur(50px)',
+            "radial-gradient(circle at center, rgba(255, 87, 34, 0.12) 0%, transparent 80%)",
+          filter: "blur(50px)",
         }}
       />
 
-      
       <div
         ref={formRef}
-        className="relative w-full max-w-3xl p-6 sm:p-10 mx-4 sm:mx-8 md:mx-auto rounded-xl border border-gray-800/50"
+        className="relative w-full max-w-3xl p-6 sm:p-10 mx-4 sm:mx-8 md:mx-auto rounded-xl border border-gray-800/50 shadow-2xl"
         style={{
           background:
-            'linear-gradient(180deg, rgba(30, 30, 30, 0.5) 0%, rgba(10, 10, 10, 0.5) 100%)',
-          backdropFilter: 'blur(12px)',
+            "linear-gradient(180deg, rgba(30, 30, 30, 0.5) 0%, rgba(10, 10, 10, 0.5) 100%)",
+          backdropFilter: "blur(12px)",
         }}
       >
         <h2
@@ -59,17 +75,31 @@ const AnimatedSignup = () => {
           Ready to take your brand global? Let&apos;s make it happen
         </h2>
 
-     
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col gap-4">
           <input
-            ref={inputRef}
+            ref={(el) => (inputRefs.current[0] = el)}
+            type="text"
+            placeholder="Company Name"
+            className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
+          />
+
+          <input
+            ref={(el) => (inputRefs.current[1] = el)}
             type="email"
             placeholder="Your email"
-            className="flex-1 px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
+            className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
           />
+
+          <textarea
+            ref={(el) => (inputRefs.current[2] = el)}
+            placeholder="Your Message"
+            rows="4"
+            className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
+          />
+
           <button
             ref={buttonRef}
-            className="px-6 sm:px-8 py-3 text-lg bg-white text-black rounded-md hover:bg-gray-200 transition-all duration-300 w-full sm:w-auto"
+            className="w-full px-6 py-3 text-lg bg-white text-black rounded-md hover:bg-gray-200 transition-all duration-300"
           >
             Join waitlist
           </button>
