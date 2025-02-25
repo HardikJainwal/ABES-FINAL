@@ -150,7 +150,7 @@ const Home = () => {
 
       <div
   ref={challengeRef}
-  className="rounded-2xl p-8 py-16 text-white flex flex-col items-center text-center transition-all duration-500 relative overflow-visible z-10"
+  className="rounded-2xl p-8 py-16 text-white flex flex-col items-center text-center transition-all duration-500 relative overflow-hidden z-10"
   style={{
     position: "relative",
     border: "2px solid transparent",
@@ -159,29 +159,40 @@ const Home = () => {
     borderRadius: "1rem",
   }}
 >
+  {/* Background Gradient Wrapper (Fixes corner issue) */}
+  <div
+    className="absolute inset-0 rounded-2xl"
+    style={{
+      background:
+        "radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.25) 0%, rgba(10, 10, 10, 0.85) 30%, rgba(0, 0, 0, 0.98) 40%)",
+      zIndex: -2,
+    }}
+  />
+
   {/* External orange glow - stronger on top, subtle on sides */}
-  <div className="absolute -top-24 -left-12 -right-12 h-32 bg-orange-700 opacity-60 blur-[90px] -z-10" />
-  <div className="absolute -bottom-16 -left-8 -right-8 h-24 bg-orange-700 opacity-20 blur-[60px] -z-10" />
-  <div className="absolute -left-16 top-1/4 bottom-1/4 w-10 bg-orange-700 opacity-15 blur-[50px] -z-10" />
-  <div className="absolute -right-16 top-1/4 bottom-1/4 w-10 bg-orange-700 opacity-15 blur-[50px] -z-10" />
+  <div className="absolute -top-24 -left-12 -right-12 h-32 bg-orange-700 opacity-70 blur-[90px] -z-10 rounded-2xl" />
+  <div className="absolute -bottom-16 -left-8 -right-8 h-24 bg-orange-700 opacity-20 blur-[60px] -z-10 rounded-2xl" />
+  <div className="absolute -left-16 top-1/4 bottom-1/4 w-10 bg-orange-700 opacity-15 blur-[50px] -z-10 rounded-2xl" />
+  <div className="absolute -right-16 top-1/4 bottom-1/4 w-10 bg-orange-700 opacity-15 blur-[50px] -z-10 rounded-2xl" />
 
   {/* White Gradient Border Bottom */}
   <div
-    className="absolute bottom-0 left-0 w-full h-[2px]"
+    className="absolute bottom-0 left-0 w-full h-[2px] rounded-b-2xl"
     style={{
       background:
         "linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0))",
       filter: "blur(2px)",
-      borderRadius: "0 0 1rem 1rem",
     }}
   />
+
+
 
   {/* Background Gradient Effect */}
   <div
     className="absolute inset-0"
     style={{
       background:
-        "radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.25) 0%, rgba(10, 10, 10, 0.85) 40%, rgba(0, 0, 0, 0.98) 60%)",
+        "radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.25) 0%, rgba(10, 10, 10, 0.85) 30%, rgba(0, 0, 0, 0.98) 40%)",
       zIndex: -2,
     }}
   />

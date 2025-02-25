@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import abs from "../../assets/BG/abs.png";
+import ambs from "../../assets/BG/ambs.jpg";
 
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -14,7 +14,7 @@ const Ambassador = () => {
   const testimonials = [
     {
       id: 1,
-      image: abs,
+      image: ambs,
       quote:
         "This product has completely transformed how I manage my projects and deadlines.",
       name: "Talia Taylor",
@@ -22,7 +22,7 @@ const Ambassador = () => {
     },
     {
       id: 2,
-      image: abs,
+      image: ambs,
       quote:
         "The analytics tools helped us increase conversion rates by 45% within two months.",
       name: "Marcus Chen",
@@ -30,7 +30,7 @@ const Ambassador = () => {
     },
     {
       id: 3,
-      image: abs,
+      image: ambs,
       quote:
         "Customer support is unmatched. They're responsive and actually solve problems.",
       name: "Elena Rodriguez",
