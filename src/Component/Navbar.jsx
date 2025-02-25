@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import logo from "../assets/Logo/Group.png";
+import abeslogo from "../assets/Logo/ABES-Logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,8 +12,8 @@ const Navbar = () => {
     >
       {/* Left Section: Logo */}
       <div className="flex items-center">
-        <img src={logo} alt="Logo" className="h-10" />
-        <div className="ml-2 mt-2 flex flex-col items-start leading-tight">
+        <img src={abeslogo} alt="Logo" className="h-12" />
+        <div className="ml-2  flex flex-col items-start leading-tight">
           <span className="text-white tracking-widest text-4xl">
             ABES
           </span>

@@ -123,9 +123,10 @@ const Home = () => {
             ref={buttonsRef}
             className="flex flex-col md:flex-row justify-center items-center md:space-x-6 space-y-4 md:space-y-0 pt-8"
           >
-            <button className="w-[220px] bg-[#FF4500] hover:bg-[#FF6347] text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300">
-              Apply Now
-            </button>
+           <button className="w-[220px] bg-[#FF4500] hover:bg-[#FF6347] text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300">
+  Apply Now
+</button>
+
             <button className="w-[220px] bg-gray-500/50 hover:bg-gray-900/70 text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 border border-gray-700">
               Explore Opportunities
             </button>
@@ -135,46 +136,62 @@ const Home = () => {
 
       <div className="relative mt-16 px-2 max-w-6xl mx-auto pb-20">
         <div className="relative">
-          {/* Enhanced orange shadow above the box */}
+          {/* Modified: Enhanced orange shadow OUTSIDE the box, positioned further from the box */}
           <div 
             style={{
               position: "absolute",
-              top: "-120px",
-              left: "0",
-              right: "0",
+              top: "-70px",
+              left: "-40px",
+              right: "-40px",
               height: "180px",
               background: "#FF4500",
               borderRadius: "50%",
-              filter: "blur(100px)",
-              opacity: "0.35",
+              filter: "blur(90px)",
+              opacity: "0.6",
               zIndex: "1",
               pointerEvents: "none"
             }}
           />
           
-          {/* Additional focused glow for depth */}
+          {/* Modified: Side orange glows */}
           <div 
             style={{
               position: "absolute",
-              top: "-60px",
-              left: "25%",
-              right: "25%",
-              height: "80px",
+              top: "20%",
+              left: "-80px",
+              width: "120px",
+              height: "300px",
+              background: "#FF4500",
+              borderRadius: "50%",
+              filter: "blur(60px)",
+              opacity: "0.40",
+              zIndex: "1",
+              pointerEvents: "none"
+            }}
+          />
+          
+          <div 
+            style={{
+              position: "absolute",
+              top: "40%",
+              right: "-80px",
+              width: "120px",
+              height: "300px",
               background: "#FF7800",
               borderRadius: "50%",
-              filter: "blur(80px)",
+              filter: "blur(90px)",
               opacity: "0.25",
-              zIndex: "2",
+              zIndex: "1",
               pointerEvents: "none"
             }}
           />
 
-          {/* Challenge box container with black interior */}
+          {/* Challenge box container with increased black opacity inside */}
           <div
             ref={challengeRef}
             className="relative rounded-2xl p-8 py-16 text-white flex flex-col items-center text-center transition-all duration-500 overflow-hidden"
             style={{
-              background: "rgba(0, 0, 0, 0.9)",
+              background: "rgba(0, 0, 0, 0.95)", // Modified: Increased black opacity from 0.9 to 0.95
               boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
               borderRadius: "1.5rem",
               position: "relative",
@@ -223,12 +240,12 @@ const Home = () => {
               }}
             />
 
-            {/* Black background with opacity */}
+            {/* Modified: Black background with increased opacity */}
             <div
               className="absolute inset-0 rounded-2xl"
               style={{
                 background: "black",
-                opacity: "0.9",
+                opacity: "0.95", // Modified: Increased from 0.9 to 0.95
                 zIndex: "-2",
               }}
             />
@@ -242,12 +259,12 @@ const Home = () => {
               }}
             />
 
-            {/* Inner glow */}
+            {/* Modified: Inner glow with reduced opacity to maintain darker interior */}
             <div
               className="absolute top-1/2 left-1/2 w-full h-full"
               style={{
                 transform: "translate(-50%, -50%)",
-                background: "radial-gradient(circle at center, rgba(255, 87, 34, 0.15) 0%, transparent 90%)",
+                background: "radial-gradient(circle at center, rgba(255, 87, 34, 0.08) 0%, transparent 90%)", // Modified: Reduced opacity from 0.15 to 0.08
                 filter: "blur(70px)",
                 zIndex: "-1",
               }}

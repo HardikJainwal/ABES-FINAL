@@ -40,7 +40,7 @@ const Ambassador = () => {
     const interval = setInterval(() => {
       setPrevIndex(activeIndex);
       setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [activeIndex]);
