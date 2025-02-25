@@ -147,8 +147,8 @@ const Home = () => {
               height: "180px",
               background: "#FF4500",
               borderRadius: "50%",
-              filter: "blur(90px)",
-              opacity: "0.6",
+              filter: "blur(120px)",
+              opacity: "0.4",
               zIndex: "1",
               pointerEvents: "none",
             }}
@@ -165,7 +165,7 @@ const Home = () => {
               background: "#FF4500",
               borderRadius: "50%",
               filter: "blur(60px)",
-              opacity: "0.40",
+              opacity: "0.1",
               zIndex: "1",
               pointerEvents: "none",
             }}
