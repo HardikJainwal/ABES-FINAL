@@ -22,7 +22,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center space-x-16 mr-auto ml-30 mt-4">
+      <div className="hidden md:flex items-center space-x-16 mr-auto ml-30 mt-0">
         <a
           href="#"
           className="text-white hover:text-orange-400 transition relative group no-underline"

@@ -14,28 +14,27 @@ const AnimatedSignup = () => {
   useEffect(() => {
     gsap.set(
       [formRef.current, titleRef.current, ...inputRefs.current, buttonRef.current, textRef.current],
-      { opacity: 0, scale: 0.8, y: 50 } // Initial state: smaller and below
+      { opacity: 0, scale: 0.8, y: 50 }
     );
 
     const tl = gsap.timeline({
       defaults: { ease: "power3.out" },
       scrollTrigger: {
         trigger: formRef.current,
-        start: "top 80%", // Adjust start point as needed
-        toggleActions: "play none none none", // Play only when it enters the viewport
+        start: "top 80%",
+        toggleActions: "play none none none",
       },
     });
 
-    // Pop-up with upwards movement
     tl.to(formRef.current, { opacity: 1, scale: 1.1, y: 0, duration: 0.8, ease: "back.out(1.7)" })
-      .to(formRef.current, { scale: 1, duration: 0.3 }) // Natural settle effect
+      .to(formRef.current, { scale: 1, duration: 0.3 })
       .to(titleRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.5")
       .to(inputRefs.current, { opacity: 1, y: 0, duration: 0.6, stagger: 0.2 }, "-=0.4")
       .to(buttonRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
       .to(textRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4");
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Clean up scroll triggers
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -85,13 +84,41 @@ const AnimatedSignup = () => {
 
           <input
             ref={(el) => (inputRefs.current[1] = el)}
+            type="text"
+            placeholder="Person Name"
+            className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
+          />
+
+          <input
+            ref={(el) => (inputRefs.current[2] = el)}
+            type="text"
+            placeholder="Contact Number"
+            className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
+          />
+
+          <input
+            ref={(el) => (inputRefs.current[3] = el)}
             type="email"
-            placeholder="Your email"
+            placeholder="Your Email"
+            className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
+          />
+
+          <input
+            ref={(el) => (inputRefs.current[4] = el)}
+            type="text"
+            placeholder="Last Quarter Revenue ($)"
+            className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
+          />
+
+          <input
+            ref={(el) => (inputRefs.current[5] = el)}
+            type="text"
+            placeholder="Last Quarter Profit ($)"
             className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
           />
 
           <textarea
-            ref={(el) => (inputRefs.current[2] = el)}
+            ref={(el) => (inputRefs.current[6] = el)}
             placeholder="Your Message"
             rows="4"
             className="w-full px-5 py-3 text-lg bg-black/40 border border-gray-800/50 rounded-md text-white focus:outline-none focus:border-gray-600 transition-colors"
@@ -101,7 +128,7 @@ const AnimatedSignup = () => {
             ref={buttonRef}
             className="w-full px-6 py-3 text-lg bg-white text-black rounded-md hover:bg-gray-200 transition-all duration-300"
           >
-            Join waitlist
+            Join Waitlist
           </button>
         </div>
 

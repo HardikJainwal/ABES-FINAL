@@ -84,7 +84,9 @@ const Home = () => {
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.85)), url(${BG})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
           backgroundBlendMode: "multiply",
           opacity: 1,
         }}
@@ -176,7 +178,7 @@ const Home = () => {
               position: "absolute",
               top: "40%",
               right: "-80px",
-              
+              width: "120px",
               height: "300px",
               background: "#FF7800",
               borderRadius: "50%",

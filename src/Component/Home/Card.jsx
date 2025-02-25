@@ -149,13 +149,13 @@ const Card = () => {
     >
       <h2
         ref={headingRef}
-        className="text-white text-3xl md:text-4xl font-bold text-center mb-2 md:mb-4 px-4"
+        className="text-white text-3xl md:text-4xl font-bold text-left mb-2 md:mb-4 px-4"
       >
         Your Gateway to the USA Market
       </h2>
       <p
         ref={subheadingRef}
-        className="text-white text-center mt-2 max-w-2xl px-4 text-sm sm:text-base"
+        className="text-white text-left mt-2 max-w-2xl px-4 text-sm sm:text-base"
       >
         Breaking into the USA market isn't just about listing your products—it's
         about building a brand that sells.
@@ -170,22 +170,39 @@ const Card = () => {
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="relative bg-[linear-gradient(to_bottom,rgba(181,56,2,0.35),rgba(255,71,0,0.5))] rounded-3xl p-5 sm:p-6 md:p-8 border border-orange-600/20 text-white transition-transform duration-300 will-change-transform flex flex-col h-full before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/40 before:to-transparent before:rounded-3xl before:pointer-events-none"
+              className="relative rounded-3xl p-5 sm:p-6 md:p-8 border border-orange-600/30 text-white transition-transform duration-300 will-change-transform flex flex-col h-full overflow-hidden"
+              style={{
+                background: "linear-gradient(to bottom right, rgba(181, 56, 2, 0.5), #3d1208)",
+                position: "relative",
+              }}
             >
-              <div className="w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 md:mb-6 relative flex-shrink-0">
-                <img
-                  src={icon}
-                  alt="Service Icon"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              {/* Center black overlay with shift to right corner */}
+              <div
+                className="absolute inset-0 rounded-3xl opacity-40 pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse at 70% 30%, #000000 0%, transparent 70%)",
+                }}
+              ></div>
+              
+              {/* Card content with icon on left and text below */}
+              <div className="flex flex-col h-full">
+              <div className="w-20 h-20 -ml-4 -mt-6 mb-2">
+                  <img
+                    src={icon}
+                    alt="Service Icon"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
 
-              <h3 className="text-white text-lg sm:text-xl font-semibold mb-2 md:mb-3">
-                {service.title}
-              </h3>
-              <p className="text-white text-xs sm:text-sm leading-relaxed">
-                {service.description}
-              </p>
+                <div className="text-left">
+                <h3 className="text-white text-lg sm:text-xl font-semibold mt-8 mb-2 md:mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-white text-xs sm:text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -194,22 +211,39 @@ const Card = () => {
             <div
               key={index + 3}
               ref={(el) => (cardsRef.current[index + 3] = el)}
-              className="bg-[linear-gradient(to_bottom,rgba(181,56,2,0.35),rgba(255,71,0,0.5))] rounded-3xl p-5 sm:p-6 md:p-8 border border-orange-600/20 text-white transition-transform duration-300 will-change-transform flex flex-col h-full"
+              className="relative rounded-3xl p-5 sm:p-6 md:p-8 border border-orange-600/30 text-white transition-transform duration-300 will-change-transform flex flex-col h-full overflow-hidden"
+              style={{
+                background: "linear-gradient(to bottom right, rgba(181, 56, 2, 0.5), #3d1208)",
+                position: "relative",
+              }}
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 md:mb-6 relative flex-shrink-0">
-                <img
-                  src={icon}
-                  alt="Service Icon"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              {/* Center black overlay with shift to right corner */}
+              <div
+                className="absolute inset-0 rounded-3xl opacity-40 pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse at 70% 30%, #000000 0%, transparent 70%)",
+                }}
+              ></div>
 
-              <h3 className="text-white text-lg sm:text-xl font-semibold mb-2 md:mb-3">
-                {service.title}
-              </h3>
-              <p className="text-white text-xs sm:text-sm leading-relaxed">
-                {service.description}
-              </p>
+              {/* Card content with icon on left and text below */}
+              <div className="flex flex-col h-full">
+              <div className="w-20 h-20 -ml-4 -mt-6 mb-2">
+                  <img
+                    src={icon}
+                    alt="Service Icon"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+
+                <div className="text-left">
+                  <h3 className="text-white text-lg sm:text-xl font-semibold mt-8 mb-2 md:mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-white text-xs sm:text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
