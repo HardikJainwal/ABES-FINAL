@@ -9,11 +9,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col items-center md:items-start md:flex-row justify-between">
         
     
-        <div className="flex flex-col items-center md:items-start text-center md:text-left mb-6 md:mb-0">
-          <img src={logo} alt="ABES" className="w-16 h-auto mb-2" />
-          <h2 className="text-white text-lg font-semibold">ABES</h2>
-          <p className="text-gray-400 text-sm">SELL BEFORE ANYONE ELSE</p>
-        </div>
+      <div className="flex items-center space-x-4 mb-6 md:mb-0">
+  <img src={logo} alt="ABES" className="w-16 h-auto" />
+  <div className="text-left">
+    <h2 className="text-white text-lg font-semibold">ABES</h2>
+    <p className="text-gray-400 text-sm">SELL BEFORE ANYONE ELSE</p>
+  </div>
+</div>
 
     
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left w-full max-w-3xl">
