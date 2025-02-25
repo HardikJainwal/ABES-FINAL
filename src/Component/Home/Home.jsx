@@ -195,8 +195,8 @@ const Home = () => {
   />
 
   {/* Orange shadow effect on left and right */}
-  <div className="absolute inset-y-0 left-0 w-12 bg-orange-500 opacity-20 blur-[40px]" />
-  <div className="absolute inset-y-0 right-0 w-12 bg-orange-500 opacity-20 blur-[40px]" />
+  <div className="absolute inset-y-0 left-0 w-12 bg-orange-500 opacity-0 blur-[40px]" />
+  <div className="absolute inset-y-0 right-0 w-12 bg-orange-500 opacity-0 blur-[40px]" />
 
   {/* Background Gradient Effect */}
   <div
