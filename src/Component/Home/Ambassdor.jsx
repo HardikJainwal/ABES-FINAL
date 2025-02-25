@@ -1,136 +1,171 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import abs from '../../assets/BG/abs.png';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import abs from "../../assets/BG/abs.png";
+
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 const Ambassador = () => {
   const sectionRef = useRef(null);
+  const cardsContainerRef = useRef(null);
   const testimonialRefs = useRef([]);
-
-  useEffect(() => {
-    const timeline = gsap.timeline({
-      defaults: { duration: 1.2, ease: "power3.out" }
-    });
-  
-    timeline.from(".testimonials-title", {
-      y: 50,
-      opacity: 0,
-      rotateX: -45,
-      immediateRender: false 
-    });
-  
-    timeline.from(".testimonials-subtitle", {
-      y: 30,
-      opacity: 0,
-      stagger: 0.2,
-      immediateRender: false
-    }, "-=0.8");
-  
-    testimonialRefs.current.forEach((testimonial, index) => {
-      timeline.from(testimonial, {
-        opacity: 0,
-        duration: 0.8,
-        immediateRender: false
-      }, "-=0.4");
-  
-      timeline.from(testimonial.querySelector('.testimonial-image'), {
-        x: -50,
-        opacity: 0,
-        duration: 0.8,
-        immediateRender: false
-      }, "-=0.6");
-  
-      timeline.from(testimonial.querySelector('.testimonial-content'), {
-        x: 50,
-        opacity: 0,
-        duration: 0.8,
-        immediateRender: false
-      }, "-=0.8");
-    });
-  }, []);
-  
-
 
   const testimonials = [
     {
       id: 1,
       image: abs,
-      quote: "This product has completely transformed how I manage my projects and deadlines",
+      quote:
+        "This product has completely transformed how I manage my projects and deadlines.",
       name: "Talia Taylor",
-      position: "Digital Marketing Director @ Quantum"
+      position: "Digital Marketing Director @ Quantum",
     },
     {
       id: 2,
       image: abs,
-      quote: "The analytics tools helped us increase conversion rates by 45% within two months",
+      quote:
+        "The analytics tools helped us increase conversion rates by 45% within two months.",
       name: "Marcus Chen",
-      position: "E-Commerce Manager @ Velotech"
+      position: "E-Commerce Manager @ Velotech",
     },
-    
+    {
+      id: 3,
+      image: abs,
+      quote:
+        "Customer support is unmatched. They're responsive and actually solve problems.",
+      name: "Elena Rodriguez",
+      position: "Operations Head @ Fintech Solutions",
+    },
   ];
 
-  return (
-    <section 
-      ref={sectionRef} 
-      className="min-h-screen py-20 flex flex-col items-center relative overflow-hidden"
-      style={{ background: "black" }}
-    >
-      
-      <div className="absolute inset-0 z-0 hidden md:block">
-        <div className="w-full h-full grid grid-cols-3 grid-rows-3">
-          <div className="col-span-3 border-b border-gray-800/50"></div>
-          <div className="col-span-3 border-b border-gray-800/50"></div>
-          <div className="col-span-3 border-b border-gray-800/50"></div>
-          <div className="row-span-3 border-r border-gray-800/50"></div>
-          <div className="row-span-3 border-r border-gray-800/50"></div>
-        </div>
-      </div>
-      
-     
-      <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-64 opacity-20 rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(255,100,0,0.8) 0%, rgba(255,100,0,0) 70%)",
-          filter: "blur(60px)",
-        }}
-      />
+  useEffect(() => {
+    if (testimonialRefs.current.length) {
+      testimonialRefs.current.forEach((card, index) => {
+        if (!card) return;
 
-      <div className="z-10 relative text-center mb-16">
-        <h2 className="testimonials-title text-4xl md:text-5xl text-white font-normal mb-6">
+        gsap.set(card, {
+          y: index * 20,
+          x: index * 10,
+          opacity: index === 0 ? 1 : 0.3, // Reduce opacity of background cards
+          scale: 1 - index * 0.05,
+          zIndex: testimonials.length - index,
+          border: "2px solid rgba(255, 255, 255, 0.3)", // Soft white border
+          background: "rgba(20, 20, 20, 0.6)", // Default background color
+        });
+      });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${testimonials.length * 50}px`,
+        scrub: 6,
+        pin: cardsContainerRef.current,
+        snap: {
+          snapTo: 1 / (testimonials.length - 1),
+          duration: { min: 0.5, max: 1 },
+          ease: "power2.inOut",
+        },
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const cardCount = testimonialRefs.current.length;
+          const segmentSize = 1 / cardCount;
+          let activeIndex = Math.floor(progress / segmentSize);
+          activeIndex = Math.min(Math.max(activeIndex, 0), cardCount - 1);
+
+          activateCard(activeIndex);
+        },
+      });
+    }
+
+    const activateCard = (activeIndex) => {
+      testimonialRefs.current.forEach((card, index) => {
+        if (!card) return;
+
+        const isActive = index === activeIndex;
+        const depthFactor = Math.abs(index - activeIndex);
+        const scaleValue = isActive ? 1 : 0.9 - depthFactor * 0.03;
+        const opacityValue = isActive ? 1 : 0.5;
+        const backgroundColor = isActive
+          ? "rgba(20, 20, 20, 0.95)"
+          : "rgba(20, 20, 20, 0.6)";
+        const borderColor = isActive
+          ? "rgba(255, 255, 255, 0.6)"
+          : "rgba(255, 255, 255, 0.2)";
+        const zIndex = isActive ? 10 : 10 - depthFactor;
+
+        gsap.to(card, {
+          opacity: opacityValue,
+          scale: scaleValue,
+          background: backgroundColor,
+          border: `2px solid ${borderColor}`,
+          boxShadow: isActive
+            ? "0 10px 30px rgba(255, 255, 255, 0.4)"
+            : "none",
+          zIndex: zIndex,
+          duration: 0.5,
+        });
+      });
+    };
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="min-h-screen py-16 md:py-20 flex flex-col items-center justify-center relative overflow-hidden bg-black px-4"
+    >
+      <div className="z-10 relative text-center mb-10 md:mb-16 px-4">
+        <h2 className="text-3xl md:text-5xl text-white font-normal mb-4 md:mb-6">
           Our Brand Ambassadors
         </h2>
-        <div className="testimonials-subtitle text-gray-400 max-w-xl mx-auto text-base md:text-lg px-4">
-          Hear firsthand how our solutions have boosted online success for users like you.
-        </div>
+        <p className="text-gray-400 max-w-lg md:max-w-xl mx-auto text-base md:text-lg">
+          Hear firsthand how our solutions have boosted online success for users
+          like you.
+        </p>
       </div>
 
-   
-      <div className="grid grid-cols-1 gap-16 w-full max-w-6xl px-4">
+      <div
+        ref={cardsContainerRef}
+        className="relative w-full max-w-lg md:max-w-2xl lg:max-w-4xl px-4 md:px-8 mb-12 md:mb-16"
+        style={{ height: "auto", minHeight: "400px" }}
+      >
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            ref={el => testimonialRefs.current[index] = el}
-            className={`flex flex-col md:flex-row md:items-center ${
-              index % 2 === 0 
-                ? "md:mr-auto md:ml-12 lg:ml-24" 
-                : "md:ml-auto md:mr-12 lg:mr-24 md:flex-row-reverse"
-            }`}
+            ref={(el) => (testimonialRefs.current[index] = el)}
+            className="testimonial-card absolute top-0 left-0 right-0 mx-auto w-full max-w-lg md:max-w-2xl transition-all duration-300"
           >
-          
-            <div className={`w-32 h-32 md:w-40 md:h-40 mx-auto md:mx-0 mb-6 md:mb-0 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-full h-full rounded-lg object-cover testimonial-image shadow-lg shadow-orange-900/20"
-              />
-            </div>
+            <div
+              className="flex flex-col md:flex-row items-center md:items-start p-6 md:p-8 rounded-xl border"
+              style={{
+                transition: "box-shadow 0.3s ease",
+                border: "2px solid rgba(255, 255, 255, 0.3)",
+                background: "rgba(20, 20, 20, 0.6)",
+              }}
+            >
+              <div className="w-24 h-24 md:w-28 md:h-28 mx-auto md:mx-0 mb-4 md:mb-0 md:mr-6 flex-shrink-0 overflow-hidden rounded-lg">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
 
-            <div className="testimonial-content bg-gray-900/80 backdrop-blur-sm p-8 rounded-xl shadow-xl max-w-lg border border-gray-800/50 transform transition-all hover:scale-105 duration-300">
-              <blockquote className="text-white text-lg md:text-xl mb-6 leading-relaxed">
-                "{testimonial.quote}"
-              </blockquote>
-              <div className="flex flex-col items-start">
-                <p className="text-white font-semibold text-base md:text-lg">{testimonial.name}</p>
-                <p className="text-gray-400 text-sm md:text-base">{testimonial.position}</p>
+              <div className="testimonial-content flex-1 text-center md:text-left">
+                <blockquote className="text-white text-base md:text-lg mb-3 md:mb-4 leading-relaxed font-light">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div className="flex flex-col items-center md:items-start">
+                  <p className="text-white font-semibold text-sm md:text-base">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-gray-400 text-xs md:text-sm">
+                    {testimonial.position}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

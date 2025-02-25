@@ -107,8 +107,8 @@ const Home = () => {
       Empowering Indian Brands for <br />
       <span
         style={{
-          background:
-            "linear-gradient(180deg, #FFFFFF 54.17%, #FFA171 100%)",
+          background: "linear-gradient(180deg, #FFFFFF 20%, #FFD4B3 50%, #FF7A00 100%)",
+
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -144,59 +144,37 @@ const Home = () => {
   
       <div className="relative mt-16 px-6 max-w-5xl mx-auto pb-32">
       
-        <div
-          className="absolute left-0 right-0 h-64 z-0"
-          style={{
-            top: "-40px",
-            background:
-              "linear-gradient(to bottom, rgba(255, 69, 0, 0.2) 0%, transparent 100%)",
-            filter: "blur(25px)",
-            transform: "translateY(-30%)",
-            width: "100%",
-            maxWidth: "100%",
-            margin: "0 auto",
-          }}
-        />
+        
 
-<div
-  className="absolute left-0 right-0 h-64 z-0"
-  style={{
-    top: "-40px",
-    background:
-      "linear-gradient(to bottom, rgba(255, 69, 0, 0.4) 0%, transparent 100%)",
-    filter: "blur(35px)", 
-    transform: "translateY(-40%)",
-    width: "100%",
-    maxWidth: "100%",
-    margin: "0 auto",
-  }}
-/>
 
-<div
+
+      <div
   ref={challengeRef}
-  className="rounded-2xl p-8 py-16 text-white flex flex-col items-center text-center transition-all duration-500 relative overflow-hidden z-10"
+  className="rounded-2xl p-8 py-16 text-white flex flex-col items-center text-center transition-all duration-500 relative overflow-visible z-10"
   style={{
     position: "relative",
     border: "2px solid transparent",
     borderImage:
       "linear-gradient(to bottom, transparent 10%, #FFA500 50%, transparent 90%) 1",
-    borderRadius: "1rem", // Rounded corners
+    borderRadius: "1rem",
   }}
 >
+  {/* External orange glow - stronger on top, subtle on sides */}
+  <div className="absolute -top-24 -left-12 -right-12 h-32 bg-orange-700 opacity-60 blur-[90px] -z-10" />
+  <div className="absolute -bottom-16 -left-8 -right-8 h-24 bg-orange-700 opacity-20 blur-[60px] -z-10" />
+  <div className="absolute -left-16 top-1/4 bottom-1/4 w-10 bg-orange-700 opacity-15 blur-[50px] -z-10" />
+  <div className="absolute -right-16 top-1/4 bottom-1/4 w-10 bg-orange-700 opacity-15 blur-[50px] -z-10" />
+
   {/* White Gradient Border Bottom */}
   <div
-    className="absolute bottom-0 left-0 w-full h-[2px]" // 2px height for visibility
+    className="absolute bottom-0 left-0 w-full h-[2px]"
     style={{
       background:
         "linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0))",
-      filter: "blur(2px)", // Soft blur for a smoother effect
-      borderRadius: "0 0 1rem 1rem", // Avoids corners
+      filter: "blur(2px)",
+      borderRadius: "0 0 1rem 1rem",
     }}
   />
-
-  {/* Orange shadow effect on left and right */}
-  <div className="absolute inset-y-0 left-0 w-12 bg-orange-500 opacity-0 blur-[40px]" />
-  <div className="absolute inset-y-0 right-0 w-12 bg-orange-500 opacity-0 blur-[40px]" />
 
   {/* Background Gradient Effect */}
   <div
@@ -207,10 +185,6 @@ const Home = () => {
       zIndex: -2,
     }}
   />
-
-
-
-
 
           
           <div
