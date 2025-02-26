@@ -36,7 +36,7 @@ const Ambassador = () => {
   const cardsContainerRef = useRef(null);
 
   useEffect(() => {
-    // Change card every 2 seconds
+    // Change card every 3 seconds
     const interval = setInterval(() => {
       setPrevIndex(activeIndex);
       setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -46,9 +46,9 @@ const Ambassador = () => {
   }, [activeIndex]);
 
   return (
-    <section className="min-h-screen py-16 md:py-20 flex flex-col items-center justify-center relative overflow-hidden bg-black px-4">
-      <div className="z-10 relative text-center mb-10 md:mb-16 px-4">
-        <h2 className="text-3xl md:text-5xl text-white font-normal mb-4 md:mb-6">
+    <section className="py-12 md:py-16 flex flex-col items-center justify-center relative overflow-hidden bg-black px-4">
+      <div className="z-10 relative text-center mb-8 md:mb-12 px-4">
+        <h2 className="text-3xl md:text-5xl text-white font-normal mb-3 md:mb-4">
           Our Brand Ambassadors
         </h2>
         <p className="text-gray-400 max-w-lg md:max-w-xl mx-auto text-base md:text-lg">
@@ -59,8 +59,8 @@ const Ambassador = () => {
 
       <div
         ref={cardsContainerRef}
-        className="relative w-full max-w-lg md:max-w-2xl lg:max-w-4xl px-4 md:px-8 mb-12 md:mb-16"
-        style={{ height: "400px", perspective: "1000px" }}
+        className="relative w-full max-w-lg md:max-w-2xl lg:max-w-4xl px-4 md:px-8"
+        style={{ height: "300px", perspective: "1000px" }}
       >
         <div className="h-full relative" style={{ transformStyle: "preserve-3d" }}>
           {testimonials.map((testimonial, index) => {
@@ -94,14 +94,14 @@ const Ambassador = () => {
                 }}
               >
                 <div
-                  className="flex flex-col md:flex-row items-center md:items-start p-6 md:p-8 rounded-xl"
+                  className="flex flex-col md:flex-row items-center md:items-start p-5 md:p-6 rounded-xl"
                   style={{
                     border: "2px solid rgba(255, 255, 255, 0.3)",
                     background: "rgba(20, 20, 20, 1)",
                     boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
                   }}
                 >
-                  <div className="w-24 h-24 md:w-28 md:h-28 mx-auto md:mx-0 mb-4 md:mb-0 md:mr-6 flex-shrink-0 overflow-hidden rounded-lg">
+                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto md:mx-0 mb-3 md:mb-0 md:mr-5 flex-shrink-0 overflow-hidden rounded-lg">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
@@ -110,14 +110,14 @@ const Ambassador = () => {
                   </div>
 
                   <div className="testimonial-content flex-1 text-center md:text-left">
-                    <blockquote className="text-white text-base md:text-lg mb-3 md:mb-4 leading-relaxed font-light">
+                    <blockquote className="text-white text-sm md:text-base mb-2 md:mb-3 leading-relaxed font-light">
                       "{testimonial.quote}"
                     </blockquote>
                     <div className="flex flex-col items-center md:items-start">
-                      <p className="text-white font-semibold text-sm md:text-base">
+                      <p className="text-white font-semibold text-sm">
                         {testimonial.name}
                       </p>
-                      <p className="text-gray-400 text-xs md:text-sm">
+                      <p className="text-gray-400 text-xs">
                         {testimonial.position}
                       </p>
                     </div>
@@ -128,8 +128,6 @@ const Ambassador = () => {
           })}
         </div>
       </div>
-
-  
     </section>
   );
 };

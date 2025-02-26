@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 import BG from "../../assets/BG/Background.png";
@@ -12,6 +12,23 @@ const Home = () => {
   const challengeRef = useRef(null);
   const circleRef = useRef(null);
   const revenueRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if screen is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -78,124 +95,153 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      {/* Background Image */}
       <div
-        className="absolute inset-0 min-h-[120vh]"
+        className="absolute inset-0 min-h-screen"
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.85)), url(${BG})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
+          backgroundAttachment: isMobile ? "scroll" : "fixed", // Fixed only for desktop
           backgroundBlendMode: "multiply",
           opacity: 1,
         }}
       />
 
+      {/* Hero Section */}
       <div
         ref={heroRef}
-        className="relative flex flex-col items-center justify-center min-h-screen text-center px-6"
+        className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 md:px-6"
       >
-        <div className="text-white space-y-6 max-w-2xl md:max-w-3xl lg:max-w-4xl mt-10">
+        <div className="text-white space-y-6 max-w-2xl md:max-w-3xl lg:max-w-4xl">
           <h1
             ref={headingRef}
-            className="text-4xl md:text-5xl lg:text-6xl leading-tight font-[400]"
+            className="text-3xl md:text-5xl lg:text-6xl leading-tight font-[400]"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
-            Empowering Indian Brands for <br />
-            <span
-              style={{
-                background:
-                  "linear-gradient(180deg, #FFFFFF 20%, #FFD4B3 50%, #FF7A00 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Global E-Commerce Success
-            </span>
+            {isMobile ? (
+              <>
+                Empowering Indian Brands for{" "}
+                <span
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 20%, #FFD4B3 50%, #FF7A00 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Global E-Commerce Success
+                </span>
+              </>
+            ) : (
+              <>
+                Empowering Indian Brands for <br />
+                <span
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 20%, #FFD4B3 50%, #FF7A00 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Global E-Commerce Success
+                </span>
+              </>
+            )}
           </h1>
 
           <p ref={subheadingRef} className="text-lg md:text-2xl opacity-90">
-            Expand, Sell & Scale in the USA with India's
-            <br />
-            #1 E-Commerce Accelerator
+            {isMobile ? (
+              "Expand, Sell & Scale in the USA with India's #1 E-Commerce Accelerator"
+            ) : (
+              <>
+                Expand, Sell & Scale in the USA with India's
+                <br />
+                #1 E-Commerce Accelerator
+              </>
+            )}
           </p>
 
           <div
             ref={buttonsRef}
             className="flex flex-col md:flex-row justify-center items-center md:space-x-6 space-y-4 md:space-y-0 pt-8"
           >
-            <button className="w-[220px] bg-[#FF4500] hover:bg-[#FF6347] text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300">
+            <button className="w-full md:w-[220px] bg-[#FF4500] hover:bg-[#FF6347] text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300">
               Apply Now
             </button>
 
-            <button className="w-[220px] bg-gray-500/50 hover:bg-gray-900/70 text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 border border-gray-700">
+            <button className="w-full md:w-[220px] bg-gray-500/50 hover:bg-gray-900/70 text-white px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 border border-gray-700">
               Explore Opportunities
             </button>
           </div>
         </div>
       </div>
 
-      <div className="relative mt-16 px-2 max-w-6xl mx-auto pb-20">
+      {/* Challenge Section */}
+      <div className="relative px-4 md:px-6 max-w-6xl mx-auto pb-20">
         <div className="relative">
-          {/* Modified: Enhanced orange shadow OUTSIDE the box, positioned further from the box */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-70px",
-              left: "-40px",
-              right: "-40px",
-              height: "180px",
-              background: "#FF4500",
-              borderRadius: "50%",
-              filter: "blur(120px)",
-              opacity: "0.4",
-              zIndex: "1",
-              pointerEvents: "none",
-            }}
-          />
+          {/* Shadow effects only shown on non-mobile screens */}
+          {!isMobile && (
+            <>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-70px",
+                  left: "-40px",
+                  right: "-40px",
+                  height: "180px",
+                  background: "#FF4500",
+                  borderRadius: "50%",
+                  filter: "blur(120px)",
+                  opacity: "0.4",
+                  zIndex: "1",
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "20%",
+                  left: "-80px",
+                  width: "120px",
+                  height: "300px",
+                  background: "#FF4500",
+                  borderRadius: "50%",
+                  filter: "blur(60px)",
+                  opacity: "0.1",
+                  zIndex: "1",
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "40%",
+                  right: "-80px",
+                  width: "120px",
+                  height: "300px",
+                  background: "#FF7800",
+                  borderRadius: "50%",
+                  filter: "blur(90px)",
+                  opacity: "0.25",
+                  zIndex: "1",
+                  pointerEvents: "none",
+                }}
+              />
+            </>
+          )}
 
-          {/* Modified: Side orange glows */}
-          <div
-            style={{
-              position: "absolute",
-              top: "20%",
-              left: "-80px",
-              width: "120px",
-              height: "300px",
-              background: "#FF4500",
-              borderRadius: "50%",
-              filter: "blur(60px)",
-              opacity: "0.1",
-              zIndex: "1",
-              pointerEvents: "none",
-            }}
-          />
-
-          <div
-            style={{
-              position: "absolute",
-              top: "40%",
-              right: "-80px",
-              width: "120px",
-              height: "300px",
-              background: "#FF7800",
-              borderRadius: "50%",
-              filter: "blur(90px)",
-              opacity: "0.25",
-              zIndex: "1",
-              pointerEvents: "none",
-            }}
-          />
-
-          {/* Challenge box container with increased black opacity inside */}
+          {/* Challenge box container with responsive padding and conditional shadow */}
           <div
             ref={challengeRef}
-            className="relative rounded-2xl p-20 py-20 text-white flex flex-col items-center text-center transition-all duration-500 overflow-hidden"
+            className="relative rounded-2xl p-6 md:p-12 lg:p-20 py-10 md:py-20 text-white flex flex-col items-center text-center transition-all duration-500 overflow-hidden"
             style={{
               background: "rgba(0, 0, 0, 0.95)",
-              boxShadow: "0 0 50px 20px rgba(255, 69, 0, 0.4)", // Adjusted for full outside glow
+              boxShadow: isMobile ? "none" : "0 0 50px 20px rgba(255, 69, 0, 0.4)",
               borderRadius: "1.5rem",
               position: "relative",
               zIndex: "3",
@@ -251,7 +297,7 @@ const Home = () => {
               className="absolute inset-0 rounded-2xl"
               style={{
                 background: "black",
-                opacity: "0.95", // Modified: Increased from 0.9 to 0.95
+                opacity: "0.95",
                 zIndex: "-2",
               }}
             />
@@ -266,21 +312,23 @@ const Home = () => {
               }}
             />
 
-            {/* Modified: Inner glow with reduced opacity to maintain darker interior */}
-            <div
-              className="absolute top-1/2 left-1/2 w-full h-full"
-              style={{
-                transform: "translate(-50%, -50%)",
-                background:
-                  "radial-gradient(circle at center, rgba(255, 87, 34, 0.08) 0%, transparent 90%)", // Modified: Reduced opacity from 0.15 to 0.08
-                filter: "blur(70px)",
-                zIndex: "-1",
-              }}
-            />
+            {/* Modified: Inner glow with reduced opacity, conditional for mobile */}
+            {!isMobile && (
+              <div
+                className="absolute top-1/2 left-1/2 w-full h-full"
+                style={{
+                  transform: "translate(-50%, -50%)",
+                  background:
+                    "radial-gradient(circle at center, rgba(255, 87, 34, 0.08) 0%, transparent 90%)",
+                  filter: "blur(70px)",
+                  zIndex: "-1",
+                }}
+              />
+            )}
 
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
               <h2
-                className="text-3xl font-bold"
+                className="text-xl md:text-3xl font-bold"
                 style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.2" }}
               >
                 <span
@@ -292,7 +340,7 @@ const Home = () => {
                     backgroundClip: "text",
                     display: "block",
                     marginBottom: "0.5rem",
-                    fontSize: "1.85rem",
+                    fontSize: isMobile ? "1.25rem" : "1.5rem",
                     fontWeight: "700",
                   }}
                 >
@@ -300,7 +348,7 @@ const Home = () => {
                 </span>
                 <span
                   style={{
-                    fontSize: "1.25rem",
+                    fontSize: isMobile ? "1rem" : "1.1rem",
                     display: "block",
                     fontWeight: "500",
                   }}
@@ -310,54 +358,54 @@ const Home = () => {
               </h2>
             </div>
 
-            <div className="w-full grid lg:grid-cols-2 gap-12 items-start">
-              <div className="text-left ml-10">
-                <p className="text-lg opacity-80">
+            <div className="w-full grid lg:grid-cols-2 gap-6 md:gap-12 items-start">
+              <div className="text-left ml-0 md:ml-10">
+                <p className="text-sm md:text-lg opacity-80">
                   Most businesses crawl. Some sprint. Few take off. The
                   challenge is simple—hit the growth benchmarks, claim exclusive
                   rewards, and cement your place as a brand that actually
                   scales.
                 </p>
-                <p className="mt-4 text-lg opacity-80">
+                <p className="mt-4 text-sm md:text-lg opacity-80">
                   This isn't just another marketing play. It's a test. Can you
                   beat the curve?
                 </p>
 
-                <div ref={revenueRef} className="mt-8">
-                  <div className="flex items-baseline space-x-4">
+                <div ref={revenueRef} className="mt-6 md:mt-8">
+                  <div className="flex items-baseline space-x-3 md:space-x-4">
                     <span
-                      className="text-6xl font-light"
+                      className="text-3xl md:text-6xl font-light"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       $100k
                     </span>
-                    <div className="text-xl">
+                    <div className="text-base md:text-xl">
                       revenue in <span className="text-[#FFA500]">90 Days</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8">
-                  <button className="text-[#FFA500] hover:text-[#FFD700] text-lg group transition-all duration-300 flex items-center">
+                <div className="mt-6 md:mt-8">
+                  <button className="text-[#FFA500] hover:text-[#FFD700] text-base md:text-lg group transition-all duration-300 flex items-center">
                     Take the Challenge
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 ml-2">
                       →
                     </span>
                   </button>
-                  <p className="text-sm opacity-70 mt-2">
+                  <p className="text-xs md:text-sm opacity-70 mt-2">
                     The clock's ticking.
                   </p>
                 </div>
               </div>
 
-              <div className="flex justify-center lg:justify-end -mt-8 relative">
+              <div className="flex justify-center lg:justify-end relative">
                 <img
                   ref={circleRef}
                   src={Circle}
                   alt="Challenge Ring"
-                  className="w-64 lg:w-96 h-auto object-contain"
+                  className="w-40 md:w-64 lg:w-96 h-auto object-contain"
                   style={{
-                    transform: "translate(-60px, 10px)", // Moves the image further down and left
+                    transform: isMobile ? "scale(0.9)" : "translate(-60px, 10px)",
                   }}
                 />
               </div>

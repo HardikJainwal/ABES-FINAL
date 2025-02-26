@@ -1,22 +1,35 @@
-import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Component/Navbar";
 
-import Home from './Component/Home/Home';
-import Navbar from './Component/Navbar';
-import Card from './Component/Home/Card';
-import Ambassdor from './Component/Home/Ambassdor';
-import Connect from './Component/Home/Connect';
-import Footer from './Component/Home/Footer';
+
+import Home from "./Component/Home/Home";
+import Card from "./Component/Home/Card";
+import Ambassdor from "./Component/Home/Ambassdor";
+import Connect from "./Component/Home/Connect";
+import Footer from "./Component/Home/Footer";
+import Challenge from "./Component/Challenge/Banner";  // Import Challenge component
+import PrizePoolTable from "./Component/Challenge/PrizePool";
 
 const App = () => {
   return (
-    <main className="min-h-screen">
-      <Navbar/>
-      <Home />
-      <Card/>
-      <Ambassdor/>
-      <Connect/>
-      <Footer/>
-    </main>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Home />
+            <Card />
+            <Ambassdor />
+            <Connect />
+            <Footer />
+            {/* <PrizePoolTable/> */}
+          </>
+        } />
+
+        {/* Use Challenge as the main component for /challenge */}
+      <Route path="/challenge/*" element={<Challenge />} />
+      </Routes>
+    </Router>
   );
 };
 
