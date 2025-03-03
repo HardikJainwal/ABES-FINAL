@@ -96,7 +96,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-black">
-      {/* Background Image */}
+      
       <div
         className="absolute inset-0 min-h-screen"
         style={{
@@ -110,7 +110,7 @@ const Home = () => {
         }}
       />
 
-      {/* Hero Section */}
+      
       <div
         ref={heroRef}
         className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 md:px-6"
@@ -181,10 +181,10 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Challenge Section */}
+      
       <div className="relative px-4 md:px-6 max-w-6xl mx-auto pb-20">
         <div className="relative">
-          {/* Shadow effects only shown on non-mobile screens */}
+          
           {!isMobile && (
             <>
               <div
@@ -235,7 +235,7 @@ const Home = () => {
             </>
           )}
 
-          {/* Challenge box container with responsive padding and conditional shadow */}
+          
           <div
             ref={challengeRef}
             className="relative rounded-2xl p-6 md:p-12 lg:p-20 py-10 md:py-20 text-white flex flex-col items-center text-center transition-all duration-500 overflow-hidden"
@@ -247,7 +247,7 @@ const Home = () => {
               zIndex: "3",
             }}
           >
-            {/* Top border highlight with gradient */}
+            
             <div
               style={{
                 position: "absolute",
@@ -264,7 +264,7 @@ const Home = () => {
               }}
             />
 
-            {/* Side borders with gradient */}
+            
             <div
               style={{
                 position: "absolute",
@@ -292,7 +292,7 @@ const Home = () => {
               }}
             />
 
-            {/* Modified: Black background with increased opacity */}
+            
             <div
               className="absolute inset-0 rounded-2xl"
               style={{
@@ -302,7 +302,7 @@ const Home = () => {
               }}
             />
 
-            {/* Bottom border gradient */}
+            
             <div
               className="absolute bottom-0 left-0 w-full h-[2px] rounded-b-2xl"
               style={{
@@ -312,7 +312,7 @@ const Home = () => {
               }}
             />
 
-            {/* Modified: Inner glow with reduced opacity, conditional for mobile */}
+            
             {!isMobile && (
               <div
                 className="absolute top-1/2 left-1/2 w-full h-full"
